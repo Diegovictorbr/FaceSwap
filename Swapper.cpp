@@ -22,7 +22,7 @@ void Swapper::setOriginalFrame(Mat of)
 }
 
 void Swapper::testes()
-{	
+{
 	//getEqualizedFaces retorna pontos externos igualados de dois rostos baseado em um deles. Os pontos igualados são importantes
 	//para a triangulação de Delaunay ser feita a partir dos mesmos pontos externos
 	vector<vector<Point2f>> equalizedFaces1 = getEqualizedFaces(facialLandmarks[0], facialLandmarks[1]);

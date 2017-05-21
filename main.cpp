@@ -13,7 +13,7 @@ using namespace std;
 
 int main()
 {
-	Detector d("C:\\Users\\Administrador\\Desktop\\Dev\\Projetos\\Test data\\Images\\FSwap\\FF (15).jpg");
+	Detector d("C:\\Users\\Administrador\\Desktop\\Dev\\Projetos\\Test data\\Images\\FSwap\\FF (12).jpg");
 	Swapper s;
 	
 	vector<vector<cv::Point2f>> facialPoints = d.getFacialLandmarks();

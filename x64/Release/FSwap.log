@@ -1,9 +1,0 @@
-﻿  Detector.cpp
-  main.cpp
-  Generating code
-  206 of 9641 functions ( 2.1%) were compiled, the rest were copied from previous compilation.
-    2 functions were new in current compilation
-    150 functions had inline decision re-evaluated but remain unchanged
-  Finished generating code
-  FSwap.vcxproj -> C:\Users\Administrador\Desktop\Dev\Projetos\C++\Visual Studio\FSwap\x64\Release\FSwap.exe
-  FSwap.vcxproj -> C:\Users\Administrador\Desktop\Dev\Projetos\C++\Visual Studio\FSwap\x64\Release\FSwap.pdb (Full PDB)
