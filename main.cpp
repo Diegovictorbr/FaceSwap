@@ -5,30 +5,28 @@
 
 using namespace std;
 
-
-
-//N vou usar dessa vez pra entender a neessidade. A execução é mais rápida com ponto flutuante?
-//originalFrame.convertTo(originalFrame, CV_32F);
-//img1Warped.convertTo(img1Warped, CV_32F);
-
 int main()
 {
-	Detector d("C:\\Users\\Administrador\\Desktop\\Dev\\Projetos\\Test data\\Images\\FSwap\\FF (12).jpg");
+	VideoCapture videoFrames("C:\\Users\\Administrador\\Desktop\\testv3.mp4");
+	Mat currentFrame;
+	Detector d;
 	Swapper s;
-	
-	vector<vector<cv::Point2f>> facialPoints = d.getFacialLandmarks();
 
-	//Checa se existem pontos faciais nos dois vetores de facialPoints
-	if (!(facialPoints[0].size() && facialPoints[0].size()))
+	while (videoFrames.read(currentFrame))
 	{
-		cout << "NÃO DETECTOU DOIS ROSTOS!" << endl;
-		system("pause");
-		return 0;
+		d.setOriginalFrame(currentFrame);
+		vector<vector<cv::Point2f>> facialPoints = d.getFacialLandmarks();
+
+		//Checa se existem pontos faciais nos dois vetores de facialPoints
+		if (!(facialPoints[0].size() && facialPoints[1].size()))
+			continue;
+
+		s.setFacialLandmarks(facialPoints);
+		s.setOriginalFrame(d.getOriginalFrame());
+		s.testes();
+		imshow("RESULT", s.getSwappedFrame());
+		waitKey(1);
 	}
-
-	s.setFacialLandmarks(facialPoints);
-	s.setOriginalFrame(d.getOriginalFrame());
-	s.testes();
-
+	
 	return 0;
 }

@@ -37,9 +37,7 @@ void Swapper::testes()
 	//cada vetor com 3 índices em faceTriangleIndexes diz respeito a três pontos em equalizedFaces
 	calculateDelaunayTriangles(equalizedFaces1, firstFaceTriangleIndexes);
 	calculateDelaunayTriangles(equalizedFaces2, secondFaceTriangleIndexes);
-	namedWindow("BEFORE", WINDOW_FREERATIO);
-	imshow("BEFORE", originalFrame);
-
+	
 	//As atividades de warp e smooth 
 	//warpEquivalentTriangles equivale as regiões triangulares faciais dos rostos e chama warpFaceTriangles passando os triângulos equivalentes.
 	warpEquivalentTriangles(equalizedFaces1, firstFaceTriangleIndexes);	
@@ -51,12 +49,12 @@ void Swapper::testes()
 	
 	originalFrameBackup = cloneAux.clone();
 	
-	
 	smoothSwappedFaces(equalizedFaces2[1]);
+}
 
-	namedWindow("AFTER", WINDOW_FREERATIO);
-	imshow("AFTER", originalFrame);
-	waitKey();
+Mat Swapper::getSwappedFrame()
+{
+	return originalFrame;
 }
 
 //Retorna dois vetores point2f contendo pontos equivalentes para que um rosto seja colocado em outro.
@@ -178,7 +176,7 @@ void Swapper::smoothSwappedFaces(vector<Point2f> &dstFace)
 
 	// Clone seamlessly.
 	Rect r = boundingRect(hull8U);
-	Point center = (r.tl() + r.br()) / 2;
+	Point center(mask(boundingRect(hull8U)).cols / 2, mask(boundingRect(hull8U)).rows / 2);
 	
-	seamlessClone(originalFrame, originalFrameBackup, mask, center, originalFrame, NORMAL_CLONE);
+	seamlessClone(originalFrame(boundingRect(hull8U)), originalFrameBackup(boundingRect(hull8U)), mask(boundingRect(hull8U)), center, originalFrame(boundingRect(hull8U)), NORMAL_CLONE);
 }

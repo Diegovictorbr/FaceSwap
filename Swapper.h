@@ -14,6 +14,7 @@ public:
 	void setFacialLandmarks(vector<vector<Point2f>>);
 	void setOriginalFrame(Mat of);
 	void testes();
+	Mat getSwappedFrame();
 
 private:
 	Mat originalFrame;

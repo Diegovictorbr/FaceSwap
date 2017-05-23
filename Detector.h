@@ -19,9 +19,10 @@ using namespace std;
 class Detector
 {
 public:
-	Detector(char * imagePath);
+	Detector();
 	vector<vector<Point2f>> getFacialLandmarks();
 	Mat getOriginalFrame();
+	void setOriginalFrame(Mat);
 	~Detector();
 
 private:
